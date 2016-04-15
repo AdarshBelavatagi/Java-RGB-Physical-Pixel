@@ -23,7 +23,7 @@
  * $Id$
  */
 
-package javacourseproject; // hope this is okay!
+package JavaRGBPhysicalPixel; // hope this is okay!
  
 /**
  * Internal class used by the Arduino class to parse the Firmata protocol.

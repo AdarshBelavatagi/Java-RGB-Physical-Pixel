@@ -1,4 +1,4 @@
-package javacourseproject;
+package JavaRGBPhysicalPixel;
 /**
  * Arduino.java - Arduino/firmata library for Processing
  * Copyright (C) 2006-08 David A. Mellis 

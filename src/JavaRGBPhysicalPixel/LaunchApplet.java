@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javacourseproject;
+package JavaRGBPhysicalPixel;
 
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -20,6 +20,7 @@ public class LaunchApplet extends PApplet {
     public void settings() {
         size(500, 500);
         arduino = new Arduino(this, Arduino.list()[0], 57600);
+        
     }
 
     public void setup() {
@@ -93,7 +94,7 @@ public class LaunchApplet extends PApplet {
                 for (int j = ry; j < ry + rh; j++) {
                     cpImage.set(i, j, rc);
                 }
-            }
+            }   
         }
 
         public int render() {
