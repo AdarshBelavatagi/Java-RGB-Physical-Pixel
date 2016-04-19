@@ -13,30 +13,41 @@ import processing.core.PImage;
  * @author prajankya
  */
 public class LaunchApplet extends PApplet {
+
     ColorPicker cp;
     Arduino arduino;
 
     @Override
     public void settings() {
-        size(500, 500);
-        arduino = new Arduino(this, Arduino.list()[0], 57600);
+        System.out.println(MainClass.LINE
+                + "Available Ports : \n");
+        String ar[] = Arduino.list();
+        for (String comPort : ar) {
+            System.out.println(comPort + "\n");
+        }
         
+        System.out.println(MainClass.LINE);
+
+        size(1000, 800);//Arduino.list()[0]
+        
+        arduino = new Arduino(this, MainClass.comPort, 57600);
     }
 
     public void setup() {
-        cp = new ColorPicker(10, 10, 400, 400, 255);
+        cp = new ColorPicker(10, 10, 980, 710, 255);
     }
 
     public void draw() {
         background(80);
         int c = cp.render();
-        arduino.analogWrite(13, round(red(c)));
-        arduino.analogWrite(11, round(green(c)));
-        arduino.analogWrite(9, round(blue(c)));
+        arduino.analogWrite(MainClass.RED, round(red(c)));
+        arduino.analogWrite(MainClass.GREEN, round(green(c)));
+        arduino.analogWrite(MainClass.BLUE, round(blue(c)));
 
     }
 
     private class ColorPicker {
+
         int x, y, w, h, c;
         PImage cpImage;
 
@@ -94,7 +105,7 @@ public class LaunchApplet extends PApplet {
                 for (int j = ry; j < ry + rh; j++) {
                     cpImage.set(i, j, rc);
                 }
-            }   
+            }
         }
 
         public int render() {
@@ -107,7 +118,7 @@ public class LaunchApplet extends PApplet {
                 c = get(mouseX, mouseY);
             }
             fill(c);
-            rect(x, y + h + 10, 20, 20);
+            rect(x, y + h + 10, w , 60);
             return c;
         }
     }
